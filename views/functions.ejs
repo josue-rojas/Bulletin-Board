@@ -1,0 +1,39 @@
+<%
+//color change for background of div
+colorChange = function(title){
+  colorKey = (title.split(" "))[0]
+  colorKey = "background-color:"+colorKey
+  return colorKey;
+
+}%>
+<%
+//font color change
+pColor = function(title){
+  col = (title.split(" "))[1]
+  col = "color:"+col
+  return col;
+
+}%>
+
+<%
+//change font-family
+changeFont = function(title){
+  fontStyle = (title.split(" "))[2]
+  fontStyle = "font-family:"+fontStyle;
+  return fontStyle;
+}
+%>
+
+<%
+//cuts a long paragraph to keep things tidy
+frontDisplay = function(body){
+  if(!body || body == "") return "";
+  if(body.length > 40){
+    return body.substring(0,40)+" ................"
+  }
+  else{
+    return body;
+  }
+
+}
+%>

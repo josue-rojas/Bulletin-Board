@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bulletin Board</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/app.css">
+    <script src="jquery.min.js"></script>
+    <script src="/app.js"></script>
+</head>
+<body class="">
+  <%- include navbar %>
+
+  <% include functions %>
+
+
+  <div class="row">
+<div class="col-md-2"> </div>
+<div id="inputPost" class="panel panel-default col-md-2 ">
+<div class="panel-heading">
+  <input id='title' type="text" class="panel-title" placeholder="Title"></input>
+</div>
+<div class="panel-body">
+  <input type="text" id='body' placeholder="Body" class="textMargin"></iput>
+  <center><button class="btn btn-primary " type="button" onclick="submitComment()">Submit</button></center>
+</div>
+</div>
+<% if (data.length == 0) { %>
+</div>
+  <% }else{ %>
+    <% for(i = 0; i < data.length; i++){ %>
+      <% if(i%3 == 0){ %>
+        <!--second column-->
+        <div class="col-md-1"> </div>
+        <div class="panel panel-default col-md-2" style="<%- colorChange(data[i].title) %>; <%- pColor(data[i].title) %>; <%- changeFont(data[i].title) %>" id=<%= data[i].id %>>
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= data[i].title %></h3>
+          </div>
+          <div class="panel-body textMargin">
+            <%- frontDisplay(data[i].body) %>
+          </div>
+          <center><button class="btn btn-warning textMargin " type="button" onclick="location.href='/message/<%= data[i].id %>'">View</button>
+            <button class="btn btn-danger textMargin " type="button" onclick="deleteM(<%= data[i].id %>)">Delete</button>
+        </center>
+
+        </div>
+        <div class="col-md-1" id=<%= "col" + data[i].id %>> </div>
+        <% if(data.length%3==0 && i == data.length) {%>
+      </div>
+      <% } %>
+      <!--third column -->
+        <% } else if(i%3 == 1){ %>
+          <div class="panel panel-default col-md-2" style="<%- colorChange(data[i].title) %> ; <%- pColor(data[i].title) %>; <%- changeFont(data[i].title) %>" id=<%= data[i].id %>>
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= data[i].title %></h3>
+            </div>
+            <div class="panel-body textMargin">
+              <%- frontDisplay(data[i].body) %>
+            </div>
+            <center><button class="btn btn-warning textMargin " type="button" onclick="location.href='/message/<%= data[i].id %>'">View</button>
+              <button class="btn btn-danger textMargin " type="button" onclick="deleteM(<%= data[i].id %>)">Delete</button>
+          </center>
+          </div>
+          <div class="col-md-2"> </div>
+          <% if(data.length%3==1 && i == data.length || i%3 == 1) { %>
+        </div>
+        <% } %>
+        <!--first column of the next row -->
+          <% }else if(i%3 == 2){ %>
+            <div class="row">
+              <div class="col-md-2" > </div>
+              <div class="panel panel-default col-md-2" style="<%- colorChange(data[i].title) %> ; <%- pColor(data[i].title) %>; <%- changeFont(data[i].title) %>" id=<%= data[i].id %>>
+                <div class="panel-heading">
+                  <h3 class="panel-title"><%= data[i].title %></h3>
+                </div>
+                <div class="panel-body textMargin">
+                  <%- frontDisplay(data[i].body) %>
+                </div>
+                <center><button class="btn btn-warning textMargin " type="button" onclick="location.href='/message/<%= data[i].id %>'">View</button>
+                  <button class="btn btn-danger textMargin " type="button" onclick="deleteM(<%= data[i].id %>)">Delete</button>
+              </center>
+              </div>
+              <% if(data.length%3==2 && i == data.length) {%>
+            </div>
+            <% } %>
+            <% } %>
+
+      <% } %>
+    <% } %>
+
+
+</body>
+</html>
