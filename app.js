@@ -8,8 +8,6 @@ app.use(parser.json());
 
 app.set('view engine', 'ejs')
 var connectionString = 'postgres://' + process.env.POSTGRES_USER + ':' + process.env.POSTGRES_PASSWORD + '@localhost/bulletinboard';
-//var connectionString = 'postgres://hebtdjezeyljac:d43e35cc58a7e420bcd93ea497a9e4c877bdc2e7cbbaad0aca95f5e782c01b19@ec2-23-21-220-188.compute-1.amazonaws.com:5432/d9aoee2a244kjt';
-//var connectionString = "postgres://jon:mypassword@localhost:5432/bulletinboard";
 var pgClient = new pg.Client(connectionString);
 pgClient.connect();
 
